@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Target, Compass, Sparkles, Code2, BookOpen, CheckCircle, ArrowRight, Layers } from 'lucide-react';
-import { personalInfo, courseworkData, researchHighlights } from '../data/researchData';
+import { Compass, CheckCircle } from 'lucide-react';
+import { personalInfo, courseworkData, mainProjectDetails } from '../data/researchData';
 
 export default function ResearchAlignmentExplorer() {
   const [selectedTrack, setSelectedTrack] = useState('3d_vision');
@@ -10,31 +10,28 @@ export default function ResearchAlignmentExplorer() {
       id: '3d_vision',
       title: '3D Vision & Geometric Deep Learning',
       icon: '📐',
-      pitch: 'Ideal for labs working on 3D Shape Processing, Point Clouds, Implicit Neural Representations, and Vision Transformers.',
-      matchingResearch: ['discernment-3d-dot-sedd', 'vit-dino-finetune'],
+      pitch: 'Relevant for labs working on 3D Point Clouds, Masked Latent Tokenization, Implicit Representations, and Discrete Transformers.',
       keyMath: ['d_{CD}(P_1, P_2) = \\sum_{x \\in P_1} \\min_{y \\in P_2} \\|x - y\\|_2^2 + \\sum_{y \\in P_2} \\min_{x \\in P_1} \\|x - y\\|_2^2'],
-      relevantCoursework: ['CS 07695 (Independent Study - Grade A)', 'CS 07559 (Adv Models of Deep Learning - Grade B)', 'CS 02505 (Data Mining I - Grade A-)'],
-      skills: ['MaskedVQVAE3D', 'PyTorch 3D', 'PointNet++', 'Open3D', 'Chamfer Distance', 'Earth Mover\'s Distance']
+      relevantCoursework: ['CS 07695 (Independent Study - Grade A)', 'CS 07559 (Adv Models of Deep Learning)', 'CS 02505 (Data Mining I - Grade A-)'],
+      skills: ['MaskedVQVAE3D', 'PyTorch', 'PointNet++', 'ModelNet40', 'Chamfer Distance (CD)', 'Earth Mover\'s Distance (EMD)']
     },
     {
       id: 'semantic_comm',
       title: 'Semantic Communication & Wireless AI (JSCC / 6G)',
       icon: '📡',
-      pitch: 'Targeted for research groups building Neural Joint Source-Channel Coding, Robust Semantic Transceivers, and Edge Intelligence.',
-      matchingResearch: ['discernment-3d-dot-sedd'],
+      pitch: 'Targeted for research groups building Neural Joint Source-Channel Coding, Robust Semantic Transceivers, and Channel Noise Degradation Resilience.',
       keyMath: ['\\text{Channel Loss: } Z \\in \\{0..255\\}^{4096} \\xrightarrow{99.2\\% \\text{ Loss}} \\hat{Z} \\xrightarrow{\\text{DoT/SEDD}} \\tilde{Z}'],
-      relevantCoursework: ['CS 07695 (Independent Study - Grade A)', 'CS 02516 (Big Data Tools & Tech - Grade B+)', 'DA 03511 (Patient Data Privacy & Ethics - Grade B+)'],
-      skills: ['Discrete Diffusion (DoT)', 'SEDD', 'Channel Noise Simulation (AWGN/Rayleigh/Truncation)', 'Class Conditioning']
+      relevantCoursework: ['CS 07695 (Independent Study - Grade A)', 'CS 02516 (Big Data Tools & Tech)', 'DA 03511 (Patient Data Privacy & Ethics)'],
+      skills: ['Discrete Diffusion (DoT)', 'SEDD', 'Channel Corruption Benchmarking', 'Class Conditioning Robustness']
     },
     {
       id: 'generative_quant',
       title: 'Generative AI & Discrete Quantization (VQ-VAE / Transformers)',
       icon: '⚡',
-      pitch: 'Perfect for researchers focusing on Discrete Latent Space Quantization, Transformer Architecture Tuning, and Audio/Visual Codebooks.',
-      matchingResearch: ['discernment-3d-dot-sedd', 'audio-mnist-vqvae', 'vit-dino-finetune'],
-      keyMath: ['\\mathcal{L}_{VQ} = \\|sg[z_e(x)] - e\\|_2^2 + \\beta \\|z_e(x) - sg[e]\\|_2^2'],
+      pitch: 'Perfect for researchers focusing on Discrete Latent Quantization, MONAI-style Transformer Architectures, and Robust Latent Codebooks.',
+      keyMath: ['\\mathcal{L}_{VQ} = \\|z_e(x) - e\\|_2^2 + \\beta \\|z_e(x) - sg[e]\\|_2^2 + \\mathcal{L}_{DoT}(\\theta)'],
       relevantCoursework: ['CS 07559 (Adv Models of Deep Learning)', 'CS 02630 (Adv Topics in Database Systems)', 'DS 02510 (Visual Analytics - Grade A)'],
-      skills: ['VQ-VAE Latent Codebooks', 'TransformerMonai.py', 'Autoregressive Modeling', 'Multi-Head Attention']
+      skills: ['MaskedVQVAE3D Codebooks', 'TransformerMonai.py', 'Discrete Diffusion', 'Multi-Head Attention']
     }
   ];
 
@@ -47,13 +44,13 @@ export default function ResearchAlignmentExplorer() {
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <div className="subtle-badge" style={{ marginBottom: '0.75rem', background: 'rgba(168, 85, 247, 0.12)', borderColor: 'rgba(168, 85, 247, 0.3)', color: 'var(--accent-purple)' }}>
-            <Compass size={14} /> Interactive Professor Tool
+            <Compass size={14} /> Interactive Faculty Alignment
           </div>
           <h2 style={{ fontSize: '2.3rem', fontWeight: 800 }}>
-            Faculty & Lab <span className="gradient-text">Research Alignment Matcher</span>
+            Research Track <span className="gradient-text">Alignment Explorer</span>
           </h2>
           <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0.5rem auto 0', fontSize: '1rem' }}>
-            Select your lab's primary research domain to see a tailored synthesis of my research contributions, mathematical background, code repositories, and graduate coursework.
+            Select your lab's research domain to view a tailored synthesis of my research contributions, mathematical background, code experience, and graduate coursework.
           </p>
         </div>
 
@@ -96,7 +93,7 @@ export default function ResearchAlignmentExplorer() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
             <div>
               <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--accent-cyan)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Tailored Faculty Profile
+                Tailored Research Alignment
               </span>
               <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#fff', marginTop: '2px' }}>
                 {currentTrack.title}
@@ -104,7 +101,7 @@ export default function ResearchAlignmentExplorer() {
             </div>
 
             <div style={{ background: 'rgba(56, 189, 248, 0.1)', padding: '6px 14px', borderRadius: 'var(--radius-full)', border: '1px solid rgba(56, 189, 248, 0.25)', fontSize: '0.85rem', color: 'var(--accent-cyan)', fontWeight: 600 }}>
-              100% Core Research Fit
+              Direct Research Background Fit
             </div>
           </div>
 

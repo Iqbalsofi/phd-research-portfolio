@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Box, FileText, Award, Mail, ExternalLink, Menu, X, Compass } from 'lucide-react';
+import { BookOpen, Box, FileText, Award, Mail, ExternalLink, Menu, X, Compass, UserCheck } from 'lucide-react';
 import { personalInfo } from '../data/researchData';
 
 export default function Header({ onOpenCV, onOpenBibtex }) {
@@ -22,7 +22,7 @@ export default function Header({ onOpenCV, onOpenBibtex }) {
         zIndex: 100,
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        background: scrolled ? 'rgba(9, 13, 22, 0.92)' : 'rgba(9, 13, 22, 0.6)',
+        background: scrolled ? 'rgba(9, 13, 22, 0.94)' : 'rgba(9, 13, 22, 0.65)',
         borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
         transition: 'all 0.3s ease'
       }}
@@ -51,29 +51,29 @@ export default function Header({ onOpenCV, onOpenBibtex }) {
               {personalInfo.name}
             </div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              Deep Learning Researcher @ Rowan
+              Graduate Research Assistant @ Rowan
             </div>
           </div>
         </a>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }} className="desktop-nav">
-          <a href="#prof-alignment" style={navLinkStyle}><Compass size={16} /> Faculty Matcher</a>
-          <a href="#research" style={navLinkStyle}><BookOpen size={16} /> Research</a>
-          <a href="#demo3d" style={navLinkStyle}><Box size={16} /> 3D Lab Demo</a>
-          <a href="#coursework" style={navLinkStyle}><Award size={16} /> Transcript & GPA</a>
-          <a href="#experience" style={navLinkStyle}><FileText size={16} /> Experience</a>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }} className="desktop-nav">
+          <a href="#featured-research" style={navLinkStyle}><BookOpen size={15} /> 3D Research</a>
+          <a href="#my-contribution" style={navLinkStyle}><UserCheck size={15} /> My Role</a>
+          <a href="#prof-alignment" style={navLinkStyle}><Compass size={15} /> Faculty Matcher</a>
+          <a href="#demo3d" style={navLinkStyle}><Box size={15} /> 3D Demo</a>
+          <a href="#coursework" style={navLinkStyle}><Award size={15} /> Coursework</a>
           <button 
             onClick={onOpenCV}
             className="btn-secondary"
             style={{ padding: '0.45rem 0.9rem', fontSize: '0.85rem' }}
           >
-            Academic CV (PDF)
+            Academic CV
           </button>
           <a 
             href={`mailto:${personalInfo.email}`} 
             className="btn-primary"
-            style={{ padding: '0.45rem 1rem', fontSize: '0.85rem' }}
+            style={{ padding: '0.45rem 0.9rem', fontSize: '0.85rem' }}
           >
             <Mail size={15} /> Contact
           </a>
@@ -90,7 +90,7 @@ export default function Header({ onOpenCV, onOpenBibtex }) {
       </div>
 
       <style>{`
-        @media (max-width: 860px) {
+        @media (max-width: 960px) {
           .desktop-nav { display: none !important; }
           .mobile-toggle { display: block !important; }
         }
@@ -102,10 +102,10 @@ export default function Header({ onOpenCV, onOpenBibtex }) {
 const navLinkStyle = {
   color: 'var(--text-muted)',
   textDecoration: 'none',
-  fontSize: '0.9rem',
+  fontSize: '0.875rem',
   fontWeight: 500,
   display: 'flex',
   alignItems: 'center',
-  gap: '6px',
+  gap: '5px',
   transition: 'color 0.2s ease'
 };

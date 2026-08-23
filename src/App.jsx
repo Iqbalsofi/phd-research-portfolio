@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import FeaturedResearchShowcase from './components/FeaturedResearchShowcase';
 import ResearchAlignmentExplorer from './components/ResearchAlignmentExplorer';
 import PointCloudDemo from './components/PointCloudDemo';
-import InteractivePipelineDiagram from './components/InteractivePipelineDiagram';
-import ResearchProjects from './components/ResearchProjects';
 import CourseworkMatrix from './components/CourseworkMatrix';
 import AcademicCV from './components/AcademicCV';
 import BibtexModal from './components/BibtexModal';
@@ -41,10 +40,9 @@ export default function App() {
       
       <main style={{ flex: 1 }}>
         <Hero onOpenCV={handleOpenCV} />
+        <FeaturedResearchShowcase />
         <ResearchAlignmentExplorer />
         <PointCloudDemo />
-        <InteractivePipelineDiagram />
-        <ResearchProjects onOpenBibtex={handleOpenBibtex} />
         <CourseworkMatrix />
         <AcademicCV onOpenCV={handleOpenCV} />
       </main>

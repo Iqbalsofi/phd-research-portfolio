@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, FileText, ArrowRight, Sparkles, CheckCircle2, MapPin, Building2, School } from 'lucide-react';
+import { Mail, FileText, ArrowRight, Sparkles, MapPin, School, UserCheck, ShieldCheck } from 'lucide-react';
 import { personalInfo } from '../data/researchData';
 
 const GithubIcon = ({ size = 18 }) => (
@@ -19,40 +19,40 @@ const LinkedinIcon = ({ size = 18 }) => (
 
 export default function Hero({ onOpenCV }) {
   return (
-    <section id="hero" style={{ padding: '4.5rem 0 3.5rem', position: 'relative' }}>
+    <section id="hero" style={{ padding: '4.5rem 0 3rem', position: 'relative' }}>
       <div className="container">
         
-        {/* Top Tag */}
+        {/* Top Badges */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem', alignItems: 'center' }}>
           <span className="subtle-badge">
-            <Sparkles size={14} /> PhD Applicant — Computer Science / Data Science
+            <Sparkles size={14} /> M.S. Data Science Candidate — Rowan University
           </span>
           <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <School size={14} color="var(--accent-cyan)" /> Rowan University, NJ
-          </span>
-          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <MapPin size={14} color="var(--accent-purple)" /> Glassboro, USA
+            <School size={14} color="var(--accent-cyan)" /> SceneSense AI Lab (Advisor: Prof. Silvija)
           </span>
         </div>
 
         {/* Hero Title & Subtitle */}
-        <div style={{ maxWidth: '900px' }}>
-          <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', fontWeight: 800, lineHeight: 1.15, marginBottom: '1.25rem' }}>
-            Advancing Neural <span className="gradient-text">3D Point Cloud</span> Reconstruction & Transmission Over Noisy Channels
+        <div style={{ maxWidth: '920px' }}>
+          <h1 style={{ fontSize: 'clamp(2.3rem, 4.8vw, 3.6rem)', fontWeight: 800, lineHeight: 1.15, marginBottom: '1.25rem' }}>
+            Extending Semantic Communication to <span className="gradient-text">3D Point Clouds</span>
           </h1>
           
-          <p style={{ fontSize: '1.15rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '820px' }}>
-            {personalInfo.bio}
+          <p style={{ fontSize: '1.1rem', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '1.5rem', maxWidth: '840px' }}>
+            Investigating 3D geometric tokenization (MaskedVQVAE3D), discrete diffusion (DoT & SEDD), shape decoding, and channel loss robustness on ModelNet40. Focused on deep learning analysis, discrete transformer development, debugging, and empirical evaluation.
           </p>
         </div>
 
         {/* Action Buttons */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '3.5rem', alignItems: 'center' }}>
-          <a href="#demo3d" className="btn-primary">
-            Launch 3D Noise Simulator Demo <ArrowRight size={16} />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem', alignItems: 'center' }}>
+          <a href="#featured-research" className="btn-primary">
+            Explore 3D Research & Experiments <ArrowRight size={16} />
+          </a>
+          <a href="#my-contribution" className="btn-secondary">
+            <UserCheck size={16} /> View My Specific Contributions
           </a>
           <button onClick={onOpenCV} className="btn-secondary">
-            <FileText size={16} /> View Academic CV (PDF)
+            <FileText size={16} /> Academic CV (PDF)
           </button>
           
           {/* Social Links */}
@@ -103,13 +103,13 @@ export default function Hero({ onOpenCV }) {
                 borderLeft: idx === 0 ? '4px solid var(--accent-cyan)' : idx === 1 ? '4px solid var(--accent-emerald)' : '1px solid var(--border-subtle)'
               }}
             >
-              <div style={{ fontSize: '2rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-heading)' }}>
+              <div style={{ fontSize: '1.9rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-heading)' }}>
                 {stat.value}
               </div>
-              <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--accent-cyan)', marginTop: '2px' }}>
+              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--accent-cyan)', marginTop: '2px' }}>
                 {stat.label}
               </div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginTop: '4px' }}>
+              <div style={{ fontSize: '0.775rem', color: 'var(--text-dim)', marginTop: '4px' }}>
                 {stat.detail}
               </div>
             </div>
