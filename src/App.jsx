@@ -1,32 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import FeaturedResearchShowcase from './components/FeaturedResearchShowcase';
-import ResearchAlignmentExplorer from './components/ResearchAlignmentExplorer';
-import PointCloudDemo from './components/PointCloudDemo';
+import ResearchAtAGlance from './components/ResearchAtAGlance';
+import FeaturedResearchCaseStudy from './components/FeaturedResearchCaseStudy';
+import SelectedProjects from './components/SelectedProjects';
 import CourseworkMatrix from './components/CourseworkMatrix';
 import AcademicCV from './components/AcademicCV';
-import BibtexModal from './components/BibtexModal';
+import LetsTalkResearch from './components/LetsTalkResearch';
 import Footer from './components/Footer';
 import { initGA, trackEvent } from './utils/analytics';
 
 export default function App() {
-  const [selectedBibtex, setSelectedBibtex] = useState(null);
-  const [isBibtexOpen, setIsBibtexOpen] = useState(false);
-
   useEffect(() => {
     initGA();
   }, []);
-
-  const handleOpenBibtex = (publication) => {
-    setSelectedBibtex(publication);
-    setIsBibtexOpen(true);
-  };
-
-  const handleCloseBibtex = () => {
-    setIsBibtexOpen(false);
-    setSelectedBibtex(null);
-  };
 
   const handleOpenCV = () => {
     trackEvent('cv_view', { source: 'button_click' });
@@ -36,24 +23,19 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Header onOpenCV={handleOpenCV} onOpenBibtex={handleOpenBibtex} />
+      <Header onOpenCV={handleOpenCV} />
       
       <main style={{ flex: 1 }}>
         <Hero onOpenCV={handleOpenCV} />
-        <FeaturedResearchShowcase />
-        <ResearchAlignmentExplorer />
-        <PointCloudDemo />
+        <ResearchAtAGlance />
+        <FeaturedResearchCaseStudy />
+        <SelectedProjects />
         <CourseworkMatrix />
         <AcademicCV onOpenCV={handleOpenCV} />
+        <LetsTalkResearch />
       </main>
 
       <Footer />
-
-      <BibtexModal 
-        isOpen={isBibtexOpen} 
-        onClose={handleCloseBibtex} 
-        publication={selectedBibtex} 
-      />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, FileText, ArrowRight, Sparkles, MapPin, School, UserCheck, ShieldCheck } from 'lucide-react';
+import { Mail, FileText, ArrowRight, MapPin, School } from 'lucide-react';
 import { personalInfo } from '../data/researchData';
 
 const GithubIcon = ({ size = 18 }) => (
@@ -19,101 +19,71 @@ const LinkedinIcon = ({ size = 18 }) => (
 
 export default function Hero({ onOpenCV }) {
   return (
-    <section id="hero" style={{ padding: '4.5rem 0 3rem', position: 'relative' }}>
+    <section id="hero" style={{ padding: '5.5rem 0 3.5rem', position: 'relative' }}>
       <div className="container">
         
-        {/* Top Badges */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem', alignItems: 'center' }}>
+        {/* Top Affiliation Badge */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.5rem', alignItems: 'center' }}>
           <span className="subtle-badge">
-            <Sparkles size={14} /> M.S. Data Science Candidate — Rowan University
+            <School size={14} color="var(--accent-cyan)" /> M.S. Data Science Candidate @ Rowan University
           </span>
-          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <School size={14} color="var(--accent-cyan)" /> SceneSense AI Lab (Advisor: Prof. Silvija)
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <MapPin size={14} color="var(--text-dim)" /> SceneSense AI Lab
           </span>
         </div>
 
         {/* Hero Title & Subtitle */}
-        <div style={{ maxWidth: '920px' }}>
-          <h1 style={{ fontSize: 'clamp(2.3rem, 4.8vw, 3.6rem)', fontWeight: 800, lineHeight: 1.15, marginBottom: '1.25rem' }}>
-            Extending Semantic Communication to <span className="gradient-text">3D Point Clouds</span>
+        <div style={{ maxWidth: '900px' }}>
+          <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', fontWeight: 800, lineHeight: 1.12, marginBottom: '1.25rem', letterSpacing: '-0.02em' }}>
+            {personalInfo.name}
           </h1>
           
-          <p style={{ fontSize: '1.1rem', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '1.5rem', maxWidth: '840px' }}>
-            Investigating 3D geometric tokenization (MaskedVQVAE3D), discrete diffusion (DoT & SEDD), shape decoding, and channel loss robustness on ModelNet40. Focused on deep learning analysis, discrete transformer development, debugging, and empirical evaluation.
+          <h2 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', fontWeight: 600, color: 'var(--accent-cyan)', marginBottom: '1.25rem', letterSpacing: '-0.01em' }}>
+            {personalInfo.title}
+          </h2>
+
+          <p style={{ fontSize: '1.125rem', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '2.25rem', maxWidth: '820px' }}>
+            {personalInfo.bio}
           </p>
         </div>
 
-        {/* Action Buttons */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem', alignItems: 'center' }}>
+        {/* Action Buttons & Clean Social Icons */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
           <a href="#featured-research" className="btn-primary">
-            Explore 3D Research & Experiments <ArrowRight size={16} />
+            View Featured Research <ArrowRight size={16} />
           </a>
-          <a href="#my-contribution" className="btn-secondary">
-            <UserCheck size={16} /> View My Specific Contributions
-          </a>
-          <button onClick={onOpenCV} className="btn-secondary">
-            <FileText size={16} /> Academic CV (PDF)
-          </button>
-          
-          {/* Social Links */}
-          <div style={{ display: 'flex', gap: '0.75rem', marginLeft: 'auto' }}>
-            <a 
-              href={personalInfo.github} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="btn-secondary" 
-              style={{ padding: '0.65rem', borderRadius: '50%' }}
-              title="GitHub Profile"
-            >
-              <GithubIcon size={18} />
-            </a>
-            <a 
-              href={personalInfo.linkedin} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="btn-secondary" 
-              style={{ padding: '0.65rem', borderRadius: '50%' }}
-              title="LinkedIn Profile"
-            >
-              <LinkedinIcon size={18} />
-            </a>
-            <a 
-              href={`mailto:${personalInfo.email}`} 
-              className="btn-secondary" 
-              style={{ padding: '0.65rem', borderRadius: '50%' }}
-              title="Academic Email"
-            >
-              <Mail size={18} />
-            </a>
-          </div>
-        </div>
 
-        {/* Impact / Metric Stat Cards */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
-          gap: '1.25rem' 
-        }}>
-          {personalInfo.stats.map((stat, idx) => (
-            <div 
-              key={idx} 
-              className="glass-card" 
-              style={{ 
-                padding: '1.25rem 1.5rem',
-                borderLeft: idx === 0 ? '4px solid var(--accent-cyan)' : idx === 1 ? '4px solid var(--accent-emerald)' : '1px solid var(--border-subtle)'
-              }}
-            >
-              <div style={{ fontSize: '1.9rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-heading)' }}>
-                {stat.value}
-              </div>
-              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--accent-cyan)', marginTop: '2px' }}>
-                {stat.label}
-              </div>
-              <div style={{ fontSize: '0.775rem', color: 'var(--text-dim)', marginTop: '4px' }}>
-                {stat.detail}
-              </div>
-            </div>
-          ))}
+          <button onClick={onOpenCV} className="btn-secondary">
+            <FileText size={16} /> CV / Résumé
+          </button>
+
+          <a 
+            href={personalInfo.github} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="btn-secondary"
+            title="GitHub Repositories"
+          >
+            <GithubIcon size={16} /> GitHub
+          </a>
+
+          <a 
+            href={personalInfo.linkedin} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="btn-secondary"
+            title="LinkedIn Profile"
+          >
+            <LinkedinIcon size={16} /> LinkedIn
+          </a>
+
+          <a 
+            href={`mailto:${personalInfo.email}`} 
+            className="btn-secondary"
+            title="Academic Email"
+          >
+            <Mail size={16} /> Email
+          </a>
         </div>
 
       </div>
