@@ -2,27 +2,31 @@ import { RESEARCH_PORTFOLIO_GA_ID } from '../config/analyticsConfig';
 
 export const initGA = () => {
   if (typeof window === 'undefined') return;
-  
-  const id = RESEARCH_PORTFOLIO_GA_ID;
-  if (!id || id === 'G-RESEARCH_PORTFOLIO_ID') {
-    console.log('[Analytics]: Dedicated Research GA4 ID is not set yet in src/config/analyticsConfig.js');
-    return;
-  }
-  
-  // Inject Google Analytics script dynamically
-  const script1 = document.createElement('script');
-  script1.async = true;
-  script1.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
-  document.head.appendChild(script1);
 
+  const id = RESEARCH_PORTFOLIO_GA_ID;
+  if (!id) return;
+
+  // Ensure window.dataLayer and window.gtag exist
   window.dataLayer = window.dataLayer || [];
-  function gtag(){ window.dataLayer.push(arguments); }
-  window.gtag = gtag;
-  gtag('js', new Date());
-  gtag('config', id, {
-    send_page_view: true
+  if (!window.gtag) {
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+  }
+
+  // Explicitly send pageview hit for GA4
+  window.gtag('config', id, {
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: window.location.pathname
   });
-  console.log(`[Analytics]: Google Analytics initialized for Research Portfolio with ID ${id}`);
+
+  window.gtag('event', 'page_view', {
+    page_title: document.title,
+    page_location: window.location.href
+  });
+
+  console.log(`[Analytics]: Pageview hit sent to GA4 (${id})`);
 };
 
 export const trackEvent = (eventName, params = {}) => {
