@@ -53,9 +53,16 @@ export default function Hero({ onOpenCV }) {
             View Featured Research <ArrowRight size={16} />
           </a>
 
-          <button onClick={onOpenCV} className="btn-secondary">
+          <a 
+            href={`${import.meta.env.BASE_URL}Iqbal_Maqbool_Sofi_CV.pdf`}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary"
+            download="Iqbal_Maqbool_Sofi_CV.pdf"
+            title="Download CV PDF"
+          >
             <FileText size={16} /> CV / Résumé
-          </button>
+          </a>
 
           <a 
             href={personalInfo.github} 

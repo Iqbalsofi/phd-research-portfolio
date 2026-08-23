@@ -145,13 +145,16 @@ export default function AcademicCV({ onOpenCV }) {
               </div>
 
               <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                <button 
-                  onClick={onOpenCV}
+                <a 
+                  href={`${import.meta.env.BASE_URL}Iqbal_Maqbool_Sofi_CV.pdf`}
+                  target="_blank"
+                  rel="noreferrer"
                   className="btn-primary"
                   style={{ width: '100%', justifyContent: 'center' }}
+                  download="Iqbal_Maqbool_Sofi_CV.pdf"
                 >
-                  <FileText size={16} /> View Résumé / CV
-                </button>
+                  <FileText size={16} /> Download Official CV / Résumé (PDF)
+                </a>
               </div>
 
             </div>

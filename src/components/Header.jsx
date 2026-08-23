@@ -64,13 +64,16 @@ export default function Header({ onOpenCV }) {
           <a href="#coursework" style={navLinkStyle}>Coursework</a>
           <a href="#contact" style={navLinkStyle}>Contact</a>
 
-          <button 
-            onClick={onOpenCV}
+          <a 
+            href={`${import.meta.env.BASE_URL}Iqbal_Maqbool_Sofi_CV.pdf`}
+            target="_blank"
+            rel="noreferrer"
             className="btn-secondary"
             style={{ padding: '0.4rem 0.85rem', fontSize: '0.825rem' }}
+            download="Iqbal_Maqbool_Sofi_CV.pdf"
           >
             CV / Résumé
-          </button>
+          </a>
         </nav>
 
         {/* Mobile menu toggle */}
@@ -99,9 +102,17 @@ export default function Header({ onOpenCV }) {
           <a href="#experience" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Experience</a>
           <a href="#coursework" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Coursework</a>
           <a href="#contact" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Contact</a>
-          <button onClick={() => { setMobileMenuOpen(false); onOpenCV(); }} className="btn-primary" style={{ marginTop: '0.5rem', justifyContent: 'center' }}>
-            CV / Résumé
-          </button>
+          <a 
+            href={`${import.meta.env.BASE_URL}Iqbal_Maqbool_Sofi_CV.pdf`}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-primary"
+            style={{ marginTop: '0.5rem', justifyContent: 'center' }}
+            download="Iqbal_Maqbool_Sofi_CV.pdf"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Download CV / Résumé (PDF)
+          </a>
         </div>
       )}
 
