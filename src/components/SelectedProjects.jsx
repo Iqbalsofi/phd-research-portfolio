@@ -1,51 +1,70 @@
 import React from 'react';
-import { BookOpen, Code2 } from 'lucide-react';
+import { Database, Disc, Layers } from 'lucide-react';
 import { selectedProjects } from '../data/researchData';
 
 export default function SelectedProjects() {
+  const getIcon = (index) => {
+    const props = { size: 22, color: 'var(--accent-ginger-text)' };
+    switch (index % 3) {
+      case 0: return <Database {...props} />;
+      case 1: return <Disc {...props} />;
+      case 2: return <Layers {...props} />;
+      default: return <Database {...props} />;
+    }
+  };
+
   return (
-    <section id="projects" style={{ padding: '3.5rem 0', background: 'rgba(10, 16, 29, 0.5)' }}>
+    <section id="projects" style={{ padding: '4rem 0', borderBottom: '1px solid var(--border-subtle)' }}>
       <div className="container">
         
-        {/* Section Header */}
-        <div style={{ marginBottom: '2rem' }}>
-          <div className="subtle-badge" style={{ marginBottom: '0.5rem' }}>
-            <BookOpen size={14} /> Additional Projects
-          </div>
-          <h2 style={{ fontSize: '1.8rem', fontWeight: 800 }}>
-            Selected Deep Learning Projects
-          </h2>
-        </div>
+        <div className="section-label">03 // Selected Projects</div>
+        <h2 style={{ fontSize: '1.85rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+          Machine Learning & Data Pipelines
+        </h2>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '2.5rem', maxWidth: '680px' }}>
+          Reproducible machine learning pipelines, generative audio models, and coursework experiments.
+        </p>
 
-        {/* Selected Project Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
-          {selectedProjects.map((proj) => (
-            <div key={proj.id} className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+          {selectedProjects.map((project, idx) => (
+            <div key={project.id} className="glass-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '0.75rem' }}>
-                  {proj.title}
-                </h3>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
-                  <div>
-                    <strong style={{ color: 'var(--accent-cyan)' }}>Problem: </strong>
-                    <span style={{ color: '#cbd5e1' }}>{proj.problem}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
+                    background: 'var(--accent-ginger-subtle)',
+                    border: '1px solid var(--accent-ginger-border)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    {getIcon(idx)}
                   </div>
                   <div>
-                    <strong style={{ color: 'var(--accent-purple)' }}>Approach: </strong>
-                    <span style={{ color: '#cbd5e1' }}>{proj.approach}</span>
-                  </div>
-                  <div>
-                    <strong style={{ color: 'var(--accent-emerald)' }}>Result: </strong>
-                    <span style={{ color: '#cbd5e1' }}>{proj.result}</span>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>{project.title}</h3>
+                    <div style={{ fontSize: '0.775rem', color: 'var(--accent-ginger-text)', fontFamily: 'var(--font-mono)' }}>
+                      {project.focus}
+                    </div>
                   </div>
                 </div>
+
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                  {project.description}
+                </p>
               </div>
 
-              {/* Technologies */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', paddingTop: '0.75rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                {proj.tech.map((t, i) => (
-                  <span key={i} style={{ fontSize: '0.75rem', padding: '3px 8px', borderRadius: '4px', background: 'rgba(255, 255, 255, 0.04)', color: 'var(--text-muted)' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', paddingTop: '1rem', borderTop: '1px solid var(--border-subtle)' }}>
+                {project.tech.map((t, tidx) => (
+                  <span key={tidx} style={{
+                    fontSize: '0.75rem',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    color: 'var(--text-muted)',
+                    fontFamily: 'var(--font-mono)'
+                  }}>
                     {t}
                   </span>
                 ))}

@@ -1,37 +1,57 @@
 import React from 'react';
-import { Compass, Radio, Box, Brain, Activity } from 'lucide-react';
-import { researchAtAGlance } from '../data/researchData';
+import { ShieldCheck, Sparkles, Radio, Box, Activity } from 'lucide-react';
+import { researchInterests } from '../data/researchData';
 
 export default function ResearchAtAGlance() {
-  const icons = [<Radio size={20} color="var(--accent-cyan)" />, <Box size={20} color="var(--accent-purple)" />, <Brain size={20} color="var(--accent-emerald)" />, <Activity size={20} color="var(--accent-amber)" />];
+  const getIcon = (index) => {
+    const props = { size: 22, color: 'var(--accent-ginger-text)' };
+    switch (index % 5) {
+      case 0: return <ShieldCheck {...props} />;
+      case 1: return <Sparkles {...props} />;
+      case 2: return <Radio {...props} />;
+      case 3: return <Box {...props} />;
+      case 4: return <Activity {...props} />;
+      default: return <ShieldCheck {...props} />;
+    }
+  };
 
   return (
-    <section id="research-glance" style={{ padding: '3.5rem 0', background: 'rgba(10, 16, 29, 0.6)', borderTop: '1px solid rgba(255, 255, 255, 0.05)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+    <section id="research-focus" style={{ padding: '4rem 0', borderBottom: '1px solid var(--border-subtle)' }}>
       <div className="container">
         
-        {/* Header */}
-        <div style={{ marginBottom: '2rem' }}>
-          <div className="subtle-badge" style={{ marginBottom: '0.5rem' }}>
-            <Compass size={14} /> Research Overview
-          </div>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: 800 }}>
-            {researchAtAGlance.title}
-          </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginTop: '0.35rem', maxWidth: '760px' }}>
-            {researchAtAGlance.summary}
-          </p>
-        </div>
+        <div className="section-label">01 // Research Interests</div>
+        <h2 style={{ fontSize: '1.85rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+          Areas of Research Focus
+        </h2>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '2.5rem', maxWidth: '680px' }}>
+          Key domains of investigation for PhD research in machine learning and trustworthy AI systems.
+        </p>
 
-        {/* 4 Compact Themes */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
-          {researchAtAGlance.themes.map((theme, idx) => (
-            <div key={idx} className="glass-card" style={{ padding: '1.35rem', background: 'rgba(16, 24, 40, 0.7)' }}>
-              <div style={{ marginBottom: '0.75rem' }}>{icons[idx]}</div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', marginBottom: '0.35rem' }}>
-                {theme.title}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.25rem'
+        }}>
+          {researchInterests.map((item, index) => (
+            <div key={index} className="glass-card" style={{ padding: '1.5rem' }}>
+              <div style={{
+                width: '42px',
+                height: '42px',
+                borderRadius: '8px',
+                background: 'var(--accent-ginger-subtle)',
+                border: '1px solid var(--accent-ginger-border)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem'
+              }}>
+                {getIcon(index)}
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+                {item.title}
               </h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: 1.5, margin: 0 }}>
-                {theme.desc}
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
+                {item.desc}
               </p>
             </div>
           ))}

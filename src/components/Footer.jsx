@@ -9,8 +9,8 @@ export default function Footer() {
 
   return (
     <footer style={{
-      background: '#060913',
-      borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+      background: '#070a10',
+      borderTop: '1px solid var(--border-subtle)',
       padding: '2rem 0',
       fontSize: '0.825rem',
       color: 'var(--text-dim)'
@@ -18,7 +18,7 @@ export default function Footer() {
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         
         <div>
-          © {new Date().getFullYear()} {personalInfo.name} • SceneSense AI Lab, Rowan University
+          &copy; {new Date().getFullYear()} {personalInfo.name} &bull; Machine Learning Research Portfolio &bull; Rowan University
         </div>
 
         <button 
@@ -35,6 +35,7 @@ export default function Footer() {
             gap: '6px',
             fontSize: '0.8rem'
           }}
+          aria-label="Back to top"
         >
           Back to Top <ArrowUp size={14} />
         </button>

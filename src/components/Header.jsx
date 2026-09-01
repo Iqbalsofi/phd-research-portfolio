@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, FileText, Award, Mail, Menu, X, Code2, Home, User } from 'lucide-react';
+import { Menu, X, FileText } from 'lucide-react';
 import { personalInfo } from '../data/researchData';
 
-export default function Header({ onOpenCV }) {
+export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const cvPath = `${import.meta.env.BASE_URL}Iqbal_Maqbool_Sofi_Research_CV.pdf`;
 
   return (
     <header 
@@ -22,35 +24,36 @@ export default function Header({ onOpenCV }) {
         zIndex: 100,
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        background: scrolled ? 'rgba(9, 13, 22, 0.95)' : 'rgba(9, 13, 22, 0.7)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        background: scrolled ? 'rgba(11, 15, 23, 0.95)' : 'rgba(11, 15, 23, 0.75)',
+        borderBottom: '1px solid var(--border-subtle)',
         transition: 'all 0.3s ease'
       }}
     >
-      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '70px' }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '66px' }}>
         
         {/* Brand */}
         <a href="#hero" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
-            width: '36px',
-            height: '36px',
-            borderRadius: '8px',
-            background: 'linear-gradient(135deg, #38bdf8 0%, #6366f1 100%)',
+            width: '34px',
+            height: '34px',
+            borderRadius: '6px',
+            background: 'var(--accent-ginger)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontWeight: 800,
+            fontWeight: 700,
             color: '#fff',
-            fontSize: '1rem'
+            fontSize: '0.9rem',
+            fontFamily: 'var(--font-heading)'
           }}>
             IS
           </div>
           <div>
-            <div style={{ fontWeight: 700, fontSize: '1rem', color: '#fff' }}>
+            <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#fff' }}>
               {personalInfo.name}
             </div>
-            <div style={{ fontSize: '0.725rem', color: 'var(--text-muted)' }}>
-              ML Researcher @ Rowan University
+            <div style={{ fontSize: '0.725rem', color: 'var(--accent-ginger-text)', fontFamily: 'var(--font-mono)' }}>
+              {personalInfo.title}
             </div>
           </div>
         </a>
@@ -58,21 +61,21 @@ export default function Header({ onOpenCV }) {
         {/* Desktop Navigation */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }} className="desktop-nav">
           <a href="#hero" style={navLinkStyle}>Home</a>
-          <a href="#featured-research" style={navLinkStyle}>Research</a>
+          <a href="#research-focus" style={navLinkStyle}>Research Focus</a>
+          <a href="#featured-case-study" style={navLinkStyle}>Featured Case Study</a>
           <a href="#projects" style={navLinkStyle}>Projects</a>
-          <a href="#experience" style={navLinkStyle}>Experience</a>
-          <a href="#coursework" style={navLinkStyle}>Coursework</a>
+          <a href="#education-experience" style={navLinkStyle}>Education & Experience</a>
           <a href="#contact" style={navLinkStyle}>Contact</a>
 
           <a 
-            href={`${import.meta.env.BASE_URL}Iqbal_Maqbool_Sofi_CV.pdf`}
+            href={cvPath}
             target="_blank"
             rel="noreferrer"
             className="btn-secondary"
-            style={{ padding: '0.4rem 0.85rem', fontSize: '0.825rem' }}
-            download="Iqbal_Maqbool_Sofi_CV.pdf"
+            style={{ padding: '0.45rem 0.9rem', fontSize: '0.825rem' }}
+            download="Iqbal_Maqbool_Sofi_Research_CV.pdf"
           >
-            CV / Résumé
+            <FileText size={14} color="var(--accent-ginger-text)" /> Download CV
           </a>
         </nav>
 
@@ -81,6 +84,7 @@ export default function Header({ onOpenCV }) {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', display: 'none' }}
           className="mobile-toggle"
+          aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -89,7 +93,7 @@ export default function Header({ onOpenCV }) {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div style={{
-          background: 'rgba(9, 13, 22, 0.98)',
+          background: 'rgba(11, 15, 23, 0.98)',
           borderBottom: '1px solid var(--border-subtle)',
           padding: '1rem 1.5rem',
           display: 'flex',
@@ -97,27 +101,27 @@ export default function Header({ onOpenCV }) {
           gap: '0.75rem'
         }}>
           <a href="#hero" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Home</a>
-          <a href="#featured-research" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Research</a>
+          <a href="#research-focus" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Research Focus</a>
+          <a href="#featured-case-study" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Featured Case Study</a>
           <a href="#projects" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Projects</a>
-          <a href="#experience" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Experience</a>
-          <a href="#coursework" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Coursework</a>
+          <a href="#education-experience" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Education & Experience</a>
           <a href="#contact" onClick={() => setMobileMenuOpen(false)} style={mobileLinkStyle}>Contact</a>
           <a 
-            href={`${import.meta.env.BASE_URL}Iqbal_Maqbool_Sofi_CV.pdf`}
+            href={cvPath}
             target="_blank"
             rel="noreferrer"
             className="btn-primary"
             style={{ marginTop: '0.5rem', justifyContent: 'center' }}
-            download="Iqbal_Maqbool_Sofi_CV.pdf"
+            download="Iqbal_Maqbool_Sofi_Research_CV.pdf"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Download CV / Résumé (PDF)
+            <FileText size={16} /> Download CV (PDF)
           </a>
         </div>
       )}
 
       <style>{`
-        @media (max-width: 860px) {
+        @media (max-width: 880px) {
           .desktop-nav { display: none !important; }
           .mobile-toggle { display: block !important; }
         }
@@ -129,7 +133,7 @@ export default function Header({ onOpenCV }) {
 const navLinkStyle = {
   color: 'var(--text-muted)',
   textDecoration: 'none',
-  fontSize: '0.875rem',
+  fontSize: '0.85rem',
   fontWeight: 500,
   transition: 'color 0.2s ease'
 };
